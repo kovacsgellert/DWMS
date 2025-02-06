@@ -12,8 +12,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DWMS.ApiService\DWMS.ApiService.csproj" />
-    <ProjectReference Include="..\DWMS.Web\DWMS.Web.csproj" />
+    <ProjectReference Include="..\DWMS.Inbound.Api\DWMS.Inbound.Api.csproj" />
+    <ProjectReference Include="..\DWMS.Inventory\DWMS.Inventory.Api\DWMS.Inventory.Api.csproj" />
   </ItemGroup>
 
   <ItemGroup>
