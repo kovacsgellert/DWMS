@@ -24,6 +24,7 @@ This is a learning project on the theme of a Distributed Warehouse Management Sy
 
 1. Async - Azure Service Bus emulator
 2. Sync - gRPC
+3. SignalR
 
 ### Deployment
 
