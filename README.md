@@ -1,9 +1,12 @@
 # DWMS 
+
 ## What's this whole thing about?
+
 This is a learning project on the theme of a Distributed Warehouse Management System (DWMS).
 
 ## What I want to use/learn
-1. .NET 9
+
+1. .NET 9 (C# 13)
 2. .NET Aspire
 3. MediatR
 4. MassTransit
@@ -12,6 +15,8 @@ This is a learning project on the theme of a Distributed Warehouse Management Sy
 6. FluentValidations
 7. xUnit
 8. Architecture tests
+9. Refit
+10. Maybe some other stuff presented in this video: https://www.youtube.com/watch?v=4I07X_EGwTY&t=1s
 
 ### Data storage
 
