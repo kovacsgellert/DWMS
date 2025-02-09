@@ -1,10 +1,15 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddProject<Projects.DWMS_Web>("webfrontend")
-    .WithExternalHttpEndpoints()
-    ;
+//var mongo = builder.AddMongoDB("mongo")
+//    .WithLifetime(ContainerLifetime.Persistent)
+//    .WithMongoExpress()
+//    .WithDataVolume();
+
+//var inboundDb = mongo.AddDatabase("dwms-inbound-db");
 
 builder.AddProject<Projects.DWMS_Inbound_Api>("dwms-inbound-api");
+//    .WithReference(inboundDb)
+//    .WaitFor(inboundDb);
 
 builder.AddProject<Projects.DWMS_Inventory_Api>("dwms-inventory-api");
 
