@@ -13,7 +13,7 @@ This is a learning project on the theme of a Distributed Warehouse Management Sy
     - Sagas
 5. CSharpier
 6. FluentValidations
-7. xUnit
+7. xUnit with AwesomeAssertions
 8. Architecture tests
 9. Refit
 10. Maybe some other stuff presented in this video: https://www.youtube.com/watch?v=4I07X_EGwTY&t=1s
