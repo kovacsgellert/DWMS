@@ -1,23 +1,35 @@
 using DWMS.Inbound.Sdk.Contracts.Api;
 using DWMS.ServiceDefaults;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 
 namespace DWMS.Inbound.Api.Controllers;
 
 public class ReceiptsController : DwmsControllerBase
 {
     private readonly ILogger<ReceiptsController> _logger;
+    private readonly IMongoClient _mongoClient;
     private static readonly List<ReceiptDto> Receipts = [];
 
-    public ReceiptsController(ILogger<ReceiptsController> logger)
+    public ReceiptsController(ILogger<ReceiptsController> logger,
+        IMongoClient mongoClient)
     {
+
         _logger = logger;
+        _mongoClient = mongoClient;
     }
 
     // GET: api/receipts
     [HttpGet]
-    public ActionResult<IEnumerable<ReceiptDto>> Get()
+    public async Task<ActionResult<IEnumerable<ReceiptDto>>> Get()
     {
+        _mongoClient.GetDatabase("dwms-inbound-db").GetCollection<ReceiptDto>("receipts").InsertOne(new ReceiptDto
+        {
+            Id = Guid.NewGuid(),
+            Code = "R001",
+            TripId = Guid.NewGuid()
+        });
+        var receipts = await _mongoClient.GetDatabase("dwms-inbound-db").GetCollection<ReceiptDto>("receipts").AsQueryable().ToListAsync();
         return Ok(Receipts);
     }
 
