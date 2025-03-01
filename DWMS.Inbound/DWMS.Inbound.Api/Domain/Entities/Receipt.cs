@@ -1,10 +1,8 @@
-﻿using DWMS.Inbound.Api.DataAccess.Common;
+﻿namespace DWMS.Inbound.Api.Domain.Entities;
 
-namespace DWMS.Inbound.Api.Domain.Entities;
-
-public class Receipt : IHasGuidId
+public class Receipt
 {
-    public Guid Id { get; set; }
+    public required Guid Id { get; set; }
     public required string Code { get; set; }
     public List<ReceiptLine> ReceiptLines { get; set; } = new List<ReceiptLine>();
 }

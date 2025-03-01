@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\DWMS.Common\DWMS.Common.csproj" />
     <ProjectReference Include="..\..\DWMS.ServiceDefaults\DWMS.ServiceDefaults.csproj" />
     <ProjectReference Include="..\DWMS.Inbound.Sdk\DWMS.Inbound.Sdk.csproj" />
   </ItemGroup>

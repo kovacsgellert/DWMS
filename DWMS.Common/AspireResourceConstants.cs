@@ -1,6 +1,6 @@
 ﻿namespace DWMS.Common;
 
-public class AspireResourceConstants
+public static class AspireResourceConstants
 {
     public const string MongoServer = "dwms-mongo-server";
 

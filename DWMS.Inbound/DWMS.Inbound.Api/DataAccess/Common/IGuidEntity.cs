@@ -1,6 +1,6 @@
 ﻿namespace DWMS.Inbound.Api.DataAccess.Common;
 
-public interface IHasGuidId
+public interface IGuidEntity
 {
     Guid Id { get; set; }
 }

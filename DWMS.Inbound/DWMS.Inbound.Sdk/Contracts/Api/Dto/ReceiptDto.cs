@@ -1,4 +1,4 @@
-﻿namespace DWMS.Inbound.Sdk.Contracts.Api;
+﻿namespace DWMS.Inbound.Sdk.Contracts.Api.Dto;
 
 public class ReceiptDto
 {

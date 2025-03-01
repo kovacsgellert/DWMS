@@ -1,4 +1,4 @@
-using DWMS.Inbound.Sdk.Contracts.Api;
+using DWMS.Inbound.Sdk.Contracts.Api.Dto;
 using DWMS.ServiceDefaults;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;

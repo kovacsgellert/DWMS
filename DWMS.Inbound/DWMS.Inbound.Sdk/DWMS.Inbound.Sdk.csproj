@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Contracts\Api\Queries\" />
     <Folder Include="Contracts\Events\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
   </ItemGroup>
 
 </Project>
