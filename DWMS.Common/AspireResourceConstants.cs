@@ -7,7 +7,6 @@ public static class AspireResourceConstants
 
     public const string InboundApi = "dwms-inbound-api";
     public const string InboundDb = "dwms-inbound-db";
-
     public const string InventoryApi = "dwms-inventory-api";
 
     // service bus subscribers

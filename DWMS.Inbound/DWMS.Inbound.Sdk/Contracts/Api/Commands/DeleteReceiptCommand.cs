@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace DWMS.Inbound.Sdk.Contracts.Api.Commands;
-internal class DeleteReceiptCommand
+public class DeleteReceiptCommand : IRequest<DeleteReceiptCommandResponse>
+{
+    public required Guid ReceiptId { get; set; }
+}
+
+public class DeleteReceiptCommandResponse
 {
 }

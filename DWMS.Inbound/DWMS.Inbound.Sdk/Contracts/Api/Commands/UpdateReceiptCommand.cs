@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace DWMS.Inbound.Sdk.Contracts.Api.Commands;
-internal class UpdateReceiptCommand
+public class UpdateReceiptCommand : IRequest<UpdateReceiptCommandResponse>
+{
+}
+
+public class UpdateReceiptCommandResponse
 {
 }
