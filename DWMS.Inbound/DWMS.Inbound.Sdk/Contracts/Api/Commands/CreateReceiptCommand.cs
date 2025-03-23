@@ -2,12 +2,13 @@
 using MediatR;
 
 namespace DWMS.Inbound.Sdk.Contracts.Api.Commands;
-public class CreateReceiptCommand : IRequest<CreateReciptCommandResponse>
+
+public class CreateReceiptCommand : IRequest<CreateReceiptCommandResponse>
 {
     public required CreateReceiptDto Receipt { get; set; }
 }
 
-public class CreateReciptCommandResponse
+public class CreateReceiptCommandResponse
 {
     public required Guid ReceiptId { get; set; }
 }

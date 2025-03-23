@@ -1,4 +1,3 @@
 ﻿namespace DWMS.Inbound.Sdk.Client;
-public interface IInboundClient
-{
-}
+
+public interface IInboundClient { }

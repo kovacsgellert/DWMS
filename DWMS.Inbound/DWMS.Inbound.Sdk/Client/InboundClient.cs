@@ -1,5 +1,3 @@
 ﻿namespace DWMS.Inbound.Sdk.Client;
-internal class InboundClient : IInboundClient
-{
 
-}
+internal class InboundClient : IInboundClient { }
