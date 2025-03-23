@@ -14,23 +14,25 @@ public class Receipt
         {
             Id = Guid.CreateVersion7(),
             Code = dto.Code,
-            ReceiptLines = []
+            ReceiptLines = [],
         };
 
         foreach (var lineDto in dto.ReceiptLines)
         {
-            receipt.ReceiptLines.Add(new ReceiptLine
-            {
-                Id = Guid.CreateVersion7(),
-                ReceiptId = receipt.Id,
-                ItemId = lineDto.ItemId,
-                LineNumber = lineDto.LineNumber,
-                Quantity = new Quantity
+            receipt.ReceiptLines.Add(
+                new ReceiptLine
                 {
-                    Value = lineDto.Quantity.Value,
-                    UnitOfMeasure = lineDto.Quantity.UnitOfMeasure
+                    Id = Guid.CreateVersion7(),
+                    ReceiptId = receipt.Id,
+                    ItemId = lineDto.ItemId,
+                    LineNumber = lineDto.LineNumber,
+                    Quantity = new Quantity
+                    {
+                        Value = lineDto.Quantity.Value,
+                        UnitOfMeasure = lineDto.Quantity.UnitOfMeasure,
+                    },
                 }
-            });
+            );
         }
 
         return receipt;

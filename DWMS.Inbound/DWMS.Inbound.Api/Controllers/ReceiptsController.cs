@@ -1,5 +1,8 @@
+using DWMS.Inbound.Sdk.Contracts.Api.Commands;
 using DWMS.Inbound.Sdk.Contracts.Api.Dto;
+using DWMS.Inbound.Sdk.Contracts.Api.Queries;
 using DWMS.ServiceDefaults;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 
@@ -9,40 +12,55 @@ public class ReceiptsController : DwmsControllerBase
 {
     private readonly ILogger<ReceiptsController> _logger;
     private readonly IMongoClient _mongoClient;
+    private readonly IMediator _mediator;
     private static readonly List<ReceiptDto> Receipts = [];
 
-    public ReceiptsController(ILogger<ReceiptsController> logger,
-        IMongoClient mongoClient)
+    public ReceiptsController(
+        ILogger<ReceiptsController> logger,
+        IMongoClient mongoClient,
+        IMediator mediator
+    )
     {
-
         _logger = logger;
         _mongoClient = mongoClient;
+        _mediator = mediator;
     }
 
     // GET: api/receipts
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ReceiptDto>>> Get()
     {
-        _mongoClient.GetDatabase("dwms-inbound-db").GetCollection<ReceiptDto>("receipts").InsertOne(new ReceiptDto
-        {
-            Id = Guid.NewGuid(),
-            Code = "R001",
-            TripId = Guid.NewGuid()
-        });
-        var receipts = await _mongoClient.GetDatabase("dwms-inbound-db").GetCollection<ReceiptDto>("receipts").AsQueryable().ToListAsync();
+        _mongoClient
+            .GetDatabase("dwms-inbound-db")
+            .GetCollection<ReceiptDto>("receipts")
+            .InsertOne(
+                new ReceiptDto
+                {
+                    Id = Guid.NewGuid(),
+                    Code = "R001",
+                    TripId = Guid.NewGuid(),
+                }
+            );
+        var receipts = await _mongoClient
+            .GetDatabase("dwms-inbound-db")
+            .GetCollection<ReceiptDto>("receipts")
+            .AsQueryable()
+            .ToListAsync();
         return Ok(Receipts);
     }
 
     // GET: api/receipts/{id}
     [HttpGet("{id}")]
-    public ActionResult<ReceiptDto> Get(Guid id)
+    public async Task<ActionResult<ReceiptDto>> Get(Guid id)
     {
-        var receipt = Receipts.FirstOrDefault(r => r.Id == id);
-        if (receipt == null)
+        var response = await _mediator.Send(new GetReceiptByIdQuery { ReceiptId = id });
+
+        if (response.Receipt == null)
         {
             return NotFound();
         }
-        return Ok(receipt);
+
+        return Ok(response.Receipt);
     }
 
     // POST: api/receipts
@@ -72,15 +90,10 @@ public class ReceiptsController : DwmsControllerBase
 
     // DELETE: api/receipts/{id}
     [HttpDelete("{id}")]
-    public IActionResult Delete(Guid id)
+    public async Task<IActionResult> Delete(Guid id)
     {
-        var receipt = Receipts.FirstOrDefault(r => r.Id == id);
-        if (receipt == null)
-        {
-            return NotFound();
-        }
+        await _mediator.Send(new DeleteReceiptCommand { ReceiptId = id });
 
-        Receipts.Remove(receipt);
         return NoContent();
     }
 }
